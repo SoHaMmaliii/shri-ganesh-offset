@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S.G. Offset Printing Press</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f5f7fa;
+      color: #2c2f4a;
+    }
+    .navbar {
+      background-color: #2c2f4a;
+    }
+    .navbar-brand, .nav-link {
+      color: #fff !important;
+      font-weight: 600;
+    }
+    .hero {
+      background: linear-gradient(135deg, rgba(44, 47, 74, 0.85), rgba(44, 47, 74, 0.7)),
+        url('/Images/hero_img.jpg') no-repeat center center/cover;
+      color: #fff;
+      padding: 120px 15px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .promo-section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      font-family: 'Poppins', sans-serif;
+      border-left: 4px solid #2c2f4a;
+      padding-left: 12px;
+      display: inline-block;
+      border-bottom: 2px solid #2c2f4a;
+    }
+    .promo-banner {
+      background-color: #ffffff;
+      padding: 3rem 0;
+    }
+    .promo-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(63, 61, 86, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .promo-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 20px 35px rgba(63, 61, 86, 0.3);
+    }
+    .promo-image img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+      border-radius: 15px;
+    }
+    .promo-text {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,0.6));
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.1rem;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
+    .explore-all {
+      background-color: #fdf7ef;
+      padding: 3rem 1rem;
+      position: relative;
+    }
+    #cardContainer {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1.5rem;
+      padding-bottom: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: #3f3d56 #f0f0f0;
+    }
+    #cardContainer::-webkit-scrollbar {
+      height: 8px;
+    }
+    #cardContainer::-webkit-scrollbar-track {
+      background: #f0f0f0;
+      border-radius: 10px;
+    }
+    #cardContainer::-webkit-scrollbar-thumb {
+      background-color: #3f3d56;
+      border-radius: 10px;
+      border: 2px solid #f0f0f0;
+    }
+    .card {
+      scroll-snap-align: start;
+      min-width: 220px;
+      max-width: 220px;
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 6px 20px rgba(63, 61, 86, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(63, 61, 86, 0.3);
+    }
+    .card-img-top {
+      height: 140px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+    .card-body {
+      padding: 1rem 1.25rem;
+      text-align: center;
+    }
+    .card-body h6 {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #3f3d56;
+      margin-bottom: 0;
+    }
+    .card a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .card a:hover {
+      text-decoration: none;
+      color: inherit;
+    }
+    footer {
+      background-color: #2c2f4a;
+      color: #fff;
+      text-align: center;
+      padding: 30px 10px 15px;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 992px) {
+      .card { min-width: 45%; }
+    }
+    @media (max-width: 576px) {
+      .card { min-width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">S.G. Offset</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon">&#9776;</span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#promo">Promos</a></li>
+        <li class="nav-item"><a class="nav-link" href="#explore-all">Explore</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#quoteModal">Quote</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="hero" class="hero">
+  <div class="container text-center">
+    <h1>Shri Ganesh Offset</h1>
+    <h4>Your Design , Our Dedication</h4>
+    <div class="d-flex justify-content-center gap-3 mt-4">
+      <a href="#promo" class="btn btn-outline-light btn-lg">Explore Our Promos</a>
+      <a href="#" class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#quoteModal">Get a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- Promo Banner -->
+<section class="promo-banner" id="promo">
+  <div class="container">
+    <h3 class="promo-section-title">Popular Products</h3>
+    <div class="row g-5">
+      <div class="col-md-6">
+        <a href="weddingcards.html">
+          <div class="promo-image">
+            <img src="/Images/promooo1.jpg" alt="High Quality Printing" />
+            <div class="promo-text">Wedding Cards</div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-6">
+        <a href="/visitingcards.html">
+        <div class="promo-image">
+          <img src="/Images/promooo2.jpg" alt="Creative Visiting Card" />
+          <div class="promo-text">Visiting Card</div>
+        </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Explore Cards -->
+<section class="explore-all" id="explore-all">
+  <div class="container">
+    <h3 class="promo-section-title">Explore All</h3>
+    <div class="container position-relative">
+      <div id="cardContainer" class="mt-3">
+        <div class="card"> <a href="flyers.html"><img src="/Images/flyer_main.png" class="card-img-top" alt="Flyers"><div class="card-body"><h6>Flyers</h6></div></a></div>
+        <div class="card"><a href="billbook.html"><img src="/Images/billbook_main.png" class="card-img-top" alt="Bill Books"><div class="card-body"><h6>Bill Books</h6></div></a></div>
+        <div class="card"><a href="/labels.html"><img src="/Images/sticker_main.jpg" class="card-img-top" alt="Labels"><div class="card-body"><h6>Labels & Stickers</h6></div></a></div>
+        <div class="card"><a href="letterheads.html"><img src="/Images/letterpad_main.jpg" class="card-img-top" alt="Letterpads"><div class="card-body"><h6>Letterpads</h6></div></a></div>
+        <div class="card"><a href="/binding.html"><img src="/Images/binding_main.jpg" class="card-img-top" alt="Binding"><div class="card-body"><h6>Binding Books</h6></div></a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about" class="py-5">
+  <div class="container text-center">
+    <h2 class="mb-4" style="color: #2c2f4a; font-weight: 700;">About Us</h2>
+    <p class="lead" style="max-width: 800px; margin: 0 auto;">
+      At <strong>S.G. Offset Printing Press</strong>, based in Peth Vadgaon, Kolhapur, we specialize in delivering high-quality offset printing services. With years of industry experience, our team is committed to offering premium printing solutions such as wedding cards, visiting cards, brochures, posters, and custom flyers that exceed expectations in quality, creativity, and turnaround time.
+    </p>
+    <p class="mt-3">
+      We blend traditional craftsmanship with modern printing technologies to provide vibrant, sharp, and durable prints that help your brand stand out.
+    </p>
+  </div>
+</section>
+
+<!-- Quote Modal -->
+<div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 15px; box-shadow: 0 10px 30px rgba(44, 47, 74, 0.25);">
+      
+      <!-- ✅ Success Message -->
+      <div id="successMessage" class="alert alert-success mx-4 mt-3 d-none" role="alert">
+        ✅ Quote request sent! WhatsApp opened successfully.
+      </div>
+
+      <form id="quoteForm" onsubmit="redirectToWhatsApp(event)">
+        <div class="modal-header" style="background-color: #2c2f4a; color: white; border-top-left-radius: 15px; border-top-right-radius: 15px;">
+          <h5 class="modal-title" id="quoteModalLabel">Request a Quote</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <div class="mb-3">
+            <label for="productName" class="form-label">Product</label>
+            <input type="text" class="form-control" id="productName" name="productName" required />
+          </div>
+          <div class="mb-3">
+            <label for="customerName" class="form-label">Your Name</label>
+            <input type="text" class="form-control" id="customerName" name="customerName" required />
+          </div>
+          <div class="mb-3">
+            <label for="customerPhone" class="form-label">WhatsApp Number</label>
+            <input type="tel" class="form-control" id="customerPhone" name="customerPhone" required pattern="\+?\d{10,15}" />
+            <div class="form-text">Include country code, e.g. +91</div>
+          </div>
+          <div class="mb-3">
+            <label for="customerMessage" class="form-label">Additional Details</label>
+            <textarea class="form-control" id="customerMessage" name="customerMessage" rows="4" placeholder="Optional..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between px-4 pb-4">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-success px-4">Send Quote Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5 class="fw-bold">S.G. Offset Printing Press</h5>
+        <p>Premium offset printing services in Peth Vadgaon, Kolhapur — delivering quality, speed, and affordability.</p>
+        <span>Since 2001</span>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h6 class="fw-bold">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li><a href="#hero" class="text-white text-decoration-none">Home</a></li>
+          <li><a href="#promo" class="text-white text-decoration-none">Promos</a></li>
+          <li><a href="#explore-all" class="text-white text-decoration-none">Explore</a></li>
+          <li><a href="#about" class="text-white text-decoration-none">About</a></li>
+          <li><a href="#" data-bs-toggle="modal" data-bs-target="#quoteModal" class="text-white text-decoration-none">Get Quote</a></li>
+        </ul>
+      </div>
+      <div class="col-md-5 mb-3">
+        <h6 class="fw-bold">Contact Us</h6>
+        <p class="mb-1">📍 Vathar Naka, Peth Vadgaon, Kolhapur</p>
+        <p class="mb-1">📞 <a href="tel:+919960868918" class="text-white text-decoration-none">+91 99608 68918</a></p>
+        <p class="mb-1">✉️ <a href="mailto:shriganeshoffset2912@gmail.com" class="text-white text-decoration-none">shriganeshoffset2912@gmail.com</a></p>
+        <p class="mb-1 mt-3">
+          <a href="https://maps.app.goo.gl/gBPtQH7zzLeHaiix7" target="_blank" class="text-white text-decoration-none">
+            <img src="https://img.icons8.com/ios-filled/24/ffffff/marker.png" alt="Google Maps" style="margin-right: 8px;">
+            View us on Maps
+          </a>
+        </p>
+      </div>
+    </div>
+    <hr style="border-color: rgba(255, 255, 255, 0.1);" />
+    <p class="text-center mb-0">&copy; 2025 S.G. Offset Printing Press. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- WhatsApp Quote Script -->
+<script>
+  function redirectToWhatsApp(event) {
+    event.preventDefault();
+
+    const product = document.getElementById('productName').value.trim();
+    const name = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const message = document.getElementById('customerMessage').value.trim();
+
+    const whatsappMessage = `Hello, I'm interested in the following product:\n🛍️ *${product}*\n\nName: *${name}*\nContact: *${phone}*\n\nDetails: ${message || 'N/A'}`;
+    const encodedMessage = encodeURIComponent(whatsappMessage);
+    const businessNumber = "919960868918";
+    const whatsappURL = `https://wa.me/${businessNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, "_blank");
+    document.getElementById('quoteForm').reset();
+    document.getElementById('successMessage').classList.remove('d-none');
+
+    setTimeout(() => {
+      document.getElementById('successMessage').classList.add('d-none');
+    }, 5000);
+  }
+</script>
+</body>
+</html>

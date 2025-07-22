@@ -1,0 +1,138 @@
+.promo-banner {
+  background-color: #efefef;
+  padding: 40px 20px;
+}
+
+.promo-image {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+
+}
+
+.promo-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.promo-text {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: rgba(255,255,255,0.85);
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  max-width: 75%;
+}
+
+.promo-text h4 {
+  margin: 0 0 6px 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #222;
+}
+
+.promo-text p {
+  margin: 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* On hover scale */
+.promo-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 12px rgba(0,0,0,0.2);
+}
+
+/* Hero section background color */
+.hero-bg {
+  background-color: #f9f9f9;
+}
+
+/* Scrollable card container styles */
+#cardContainer {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px;
+}
+
+#cardContainer .card {
+  scroll-snap-align: start;
+  min-width: 150px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+#cardContainer .card:hover {
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Scroll buttons */
+.scroll-btn-left, .scroll-btn-right {
+  width: 36px;
+  height: 60px;
+  border-radius: 6px;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+  border: none;
+  color: white;
+  font-size: 28px;
+  line-height: 1;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.scroll-btn-left:hover, .scroll-btn-right:hover {
+  opacity: 1;
+  background-color: rgba(0,0,0,0.85);
+}
+
+.scroll-btn-left {
+  left: -10px;
+}
+
+.scroll-btn-right {
+  right: -10px;
+}
+
+/* Company info section text */
+.bg-light p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.bg-light h2 {
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Footer styles */
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .promo-text {
+    max-width: 90%;
+    padding: 10px 15px;
+  }
+  .scroll-btn-left, .scroll-btn-right {
+    display: none; /* Hide scroll buttons on small screens */
+  }
+}
+.promo-img {
+  width: 100%;   /* Makes image take full width of the container */
+  height: auto;  /* Maintains aspect ratio */
+  display: block; /* Removes bottom gap */
+}

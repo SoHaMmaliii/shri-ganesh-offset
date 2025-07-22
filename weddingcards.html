@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Wedding Cards</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #f9f9fb;
+      color: #333;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(44, 47, 74, 0.85), rgba(44, 47, 74, 0.7)),
+        url('/Images/hero_wed.jpg') no-repeat center center/cover;
+      color: #fff;
+      padding: 100px 15px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+      max-width: 1200px;
+    }
+
+    .product-card {
+  width: 100%;
+  max-width: 460px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 0;
+  margin: auto;
+}
+
+
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+    }
+
+.product-image-wrapper {
+  width: 100%;
+  height: 180px; /* rectangle look */
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.product-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* This ensures your visiting card image fits completely */
+  background-color: #1A1A1A;
+
+  transition: transform 0.3s;
+}
+
+
+    .product-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .product-info {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .product-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-description {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.75rem;
+    }
+
+    .product-price {
+      font-size: 1rem;
+      color: #c17f4f;
+    }
+
+    .price-start {
+      color: #a88a73;
+      font-size: 0.85rem;
+    }
+
+    .btn-primary {
+      background-color: #2c2f4a;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1.2rem;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background-color: #1e2135;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 15px rgba(193, 127, 79, 0.4);
+      color: white;
+    }
+
+    .modal .modal-content {
+      border-radius: 12px;
+      padding: 1.5rem;
+      background: #fff;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      animation: zoomFade 0.4s ease forwards;
+    }
+
+    .modal-header {
+      background-color: #2c2f4a;
+      color: #fff;
+      border-bottom: none;
+    }
+
+    .modal-header .modal-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .modal-fullscreen .modal-content {
+      background: transparent;
+      box-shadow: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .modal-fullscreen img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-fullscreen .btn-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+    }
+
+    footer {
+      background-color: #2c2f4a;
+      color: #fff;
+      padding: 3rem 1rem 1rem;
+      text-align: center;
+    }
+
+    .why-choose-us h2 {
+      font-weight: 700;
+    }
+
+    .why-choose-us p.lead {
+      font-size: 1.1rem;
+    }
+
+    .why-choose-us h5 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .why-choose-us p {
+      color: #e0e0e0;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #c17f4f !important;
+      box-shadow: 0 0 8px rgba(193, 127, 79, 0.6);
+      outline: none;
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .modal-backdrop.show {
+      opacity: 0.6 !important;
+      transition: opacity 0.3s ease;
+    }
+
+    @keyframes zoomFade {
+      from {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .promo-section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #333;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      font-family: 'Poppins', sans-serif;
+      border-left: 4px solid #2c2f4a;
+      padding-left: 12px;
+      display: inline-block;
+      border-bottom: 2px solid #2c2f4a;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Wedding Cards</h1>
+    <p>Looking for the Perfect Wedding Card? Find Your Style Here!</p>
+  </div>
+</section>
+
+
+ 
+<!-- Products Grid -->
+ <div class="container  mt-3 pt-2">
+  <h3 class="promo-section-title" >Popular Products</h3>
+<div class="container products-grid">
+
+  <div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_1.jpg" alt="Elegant Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Elegant Wedding Cards</h3>
+      <p class="product-description"> Premium paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2000.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Elegant Wedding Cards">Get Quote</button>
+    </div>
+  </div>
+
+ <div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_2.jpg" alt="Luxurious Wedding Card" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Luxurious Wedding Cards</h3>
+      <p class="product-description">Premium paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹3000.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Luxurious Wedding Card">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/Wed_3.jpg" alt="Graceful Wedding Card" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Graceful Wedding Cards</h3>
+      <p class="product-description">Premium paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2200.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Graceful Wedding Card">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_4.jpg" alt="Exquisite Wedding Card" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Exquisite Wedding Cards</h3>
+      <p class="product-description">Premium paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2600.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Exquisite Wedding Card">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_5.jpg" alt="Fine Wedding Card" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Fine Wedding Cards</h3>
+      <p class="product-description">Standard paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹1600.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Fine Wedding Card">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_6.jpg" alt="Artistical Wedding Card" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Artistical Wedding Cards</h3>
+      <p class="product-description">Standard paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹1500.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Artistical Wedding Card">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_7.jpg" alt="Rich Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name"> Rich Wedding Cards</h3>
+      <p class="product-description">Premium paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2200.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Rich Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_8.jpg" alt="Classical Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Classical Wedding Cards</h3>
+      <p class="product-description">Premium paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2400.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Classical Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_16.jpg" alt="Bold Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Bold Wedding Cards</h3>
+      <p class="product-description">Standard paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2000.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Bold Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_9.jpg" alt="Premium Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Premium Wedding Cards</h3>
+      <p class="product-description">Standard paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2200.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Premium Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_11.jpg" alt="Whity Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Whity Wedding Cards</h3>
+      <p class="product-description">Standard paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2000.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Whity Wedding Cards">Get Quote</button>
+    </div>
+  </div>
+<div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_12.jpg" alt="Sumpreme Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Sumpreme Wedding Cards</h3>
+      <p class="product-description">Standard paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2500.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Sumpreme Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_13.jpg" alt="Unique Wedding Card" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Unique Wedding Cards</h3>
+      <p class="product-description">Premium paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2500.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Unqiue Wedding Card">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_14.jpg" alt="Sophistical Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Sophistical Wedding Cards</h3>
+      <p class="product-description">Standard paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2200.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Sophistical Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_15.jpg" alt=" Delicate Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name"> Delicate Wedding Cards</h3>
+      <p class="product-description">Premium paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹2600.00</p>
+      <button class="btn btn-primary quote-btn" data-product=" Delicate Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_ex.jpg" alt="Charm Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Charm Weddding Cards</h3>
+      <p class="product-description">Light paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹1200.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Charm Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_17.jpg" alt="Small Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Small Wedding Cards</h3>
+      <p class="product-description">Light paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹1400-1500</p>
+      <button class="btn btn-primary quote-btn" data-product="Small Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_18.jpg" alt="Desi Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Desi Wedding Cards</h3>
+      <p class="product-description">Light paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹1200.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Desi Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_19.jpg" alt="Radiant Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">Radiant Wedding Cards</h3>
+      <p class="product-description">Light paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹1100.00</p>
+      <button class="btn btn-primary quote-btn" data-product="Radiant Wedding Cards">Get Quote</button>
+    </div>
+  </div><div class="product-card">
+    <div class="product-image-wrapper">
+      <img src="/Images/wed_20.jpg" alt="English Wedding Cards" />
+    </div>
+    <div class="product-info">
+      <h3 class="product-name">English Wedding Cards</h3>
+      <p class="product-description">Light paper quality</p>
+      <p class="product-price"><span class="price-start">100 starting at </span>₹1160.00</p>
+      <button class="btn btn-primary quote-btn" data-product="English Wedding Cards">Get Quote</button>
+    </div>
+  </div>
+</div>
+   <div class="container text-center">
+      <h4 class="mb-3">"Visit us in-store to explore 500+ exclusive designs and personalized options!"</h4></div>
+</div>
+
+<!-- Quote Modal -->
+<div class="modal fade" id="quoteModal" tabindex="-1" aria-labelledby="quoteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+      <form id="quoteForm" target="_blank" method="GET" action="">
+        <div class="modal-header">
+          <h5 class="modal-title" id="quoteModalLabel">Request a Quote</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-4">
+            <label for="productName" class="form-label">Product</label>
+            <input type="text" class="form-control" id="productName" name="productName" placeholder="Enter Product name" required />
+          </div>
+          <div class="mb-4">
+            <label for="customerName" class="form-label">Your Name</label>
+            <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Enter your name" required />
+          </div>
+          <div class="mb-4">
+            <label for="customerPhone" class="form-label">Your WhatsApp Number</label>
+            <input type="tel" class="form-control" id="customerPhone" name="customerPhone" placeholder="e.g. +919XXXXXXXXX" required pattern="\+?\d{10,15}" />
+            <div class="form-text">Include country code, e.g. +91 for India</div>
+          </div>
+          <div class="mb-4">
+            <label for="customerMessage" class="form-label">Additional Details</label>
+            <textarea class="form-control" id="customerMessage" name="customerMessage" rows="5" placeholder="Any additional info (optional)"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success btn-lg">Send Quote Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Image Fullscreen Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content position-relative bg-dark">
+
+      <!-- Close Button -->
+      <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-4 fs-3"
+              data-bs-dismiss="modal" aria-label="Close" style="z-index: 1055;"></button>
+
+      <!-- Full Image -->
+      <img src="" alt="Full Size Product Image" id="fullImage" class="img-fluid w-100 h-100 object-fit-contain" />
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// Open quote modal (without setting product name)
+document.querySelectorAll(".quote-btn").forEach(btn => {
+  btn.addEventListener("click", (e) => {
+    // const productName = e.target.getAttribute("data-product");
+    // document.getElementById("productName").value = productName; // REMOVE or COMMENT this
+
+    // Clear product name field (optional)
+    document.getElementById("productName").value = ""; // ensure it’s empty
+
+    const quoteModal = new bootstrap.Modal(document.getElementById("quoteModal"));
+    quoteModal.show();
+  });
+});
+
+  // Open image fullscreen modal when clicking product image
+  document.querySelectorAll(".product-image-wrapper img").forEach(img => {
+    img.addEventListener("click", () => {
+      const fullImageSrc = img.src;
+      const fullImageAlt = img.alt || "Product Image";
+      const fullImage = document.getElementById("fullImage");
+      fullImage.src = fullImageSrc;
+      fullImage.alt = fullImageAlt;
+
+      const imageModal = new bootstrap.Modal(document.getElementById("imageModal"));
+      imageModal.show();
+    });
+  });
+
+  // Handle quote form submission
+  document.getElementById("quoteForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = this.customerName.value.trim();
+    const phone = this.customerPhone.value.trim();
+    const product = this.productName.value.trim();
+    const details = this.customerMessage.value.trim();
+
+    if (!name || !phone || !product) {
+      alert("Please fill all required fields.");
+      return;
+    }
+
+    // WhatsApp phone number of the owner (change to your number without + or spaces)
+    const ownerPhone = "919960868918"; // <-- Replace with your WhatsApp number here!
+
+    // Construct WhatsApp message text
+    let message = `Hello! I would like to request a quote for the product: *${product}*.\n`;
+    message += `Name: ${name}\nWhatsApp: ${phone}\n`;
+    if (details) message += `Additional Details: ${details}\n`;
+
+    // Encode message
+    const encodedMessage = encodeURIComponent(message);
+
+    // WhatsApp URL
+    const waURL = `https://wa.me/${ownerPhone}?text=${encodedMessage}`;
+
+    // Open WhatsApp in new tab
+    window.open(waURL, "_blank");
+
+    // Close the modal after sending
+    const modalEl = document.getElementById("quoteModal");
+    const modalInstance = bootstrap.Modal.getInstance(modalEl);
+    modalInstance.hide();
+
+    // Reset form
+    this.reset();
+  });
+</script>
+
+<footer>
+  <section class="why-choose-us py-5 text-white">
+    <div class="container text-center">
+      <h2 class="mb-3">Why Choose  Wedding Cards?</h2>
+      <p class="lead mb-4">Premium materials, full customization, and timely delivery – we make every detail count.</p>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h5>🖋 Custom Designs</h5>
+          <p>Tailored to your theme & style</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>🚚 Fast Delivery</h5>
+          <p>Same-day shipping available</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>💍 Elegant Quality</h5>
+          <p>Rich textures and luxury papers</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p>&copy; 2025 S.G. Offset | Designed with ❤ in SG OFFEST</p>
+</footer>
+
+
+
+</body>
+</html>
